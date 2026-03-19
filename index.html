@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GigShield – Parametric Income Insurance for Delivery Partners</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+
+<div class="screen active" id="screen-onboard">
+  <div class="onboard-bg">
+    <div class="onboard-blob blob1"></div>
+    <div class="onboard-blob blob2"></div>
+    <div class="onboard-blob blob3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+  <div class="onboard-container">
+    <div class="onboard-left">
+      <div class="brand-mark">
+        <div class="brand-icon">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M20 3L5 10V20C5 28.284 11.716 35 20 37C28.284 35 35 28.284 35 20V10L20 3Z" fill="url(#og1)"/><path d="M13 20.5L17.5 25L27 15" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="og1" x1="5" y1="3" x2="35" y2="37" gradientUnits="userSpaceOnUse"><stop stop-color="#FF6B35"/><stop offset="1" stop-color="#F7C59F"/></linearGradient></defs></svg>
+        </div>
+        <span class="brand-name-lg">GigShield</span>
+      </div>
+      <h1 class="onboard-headline">Your income,<br/><em>protected</em> always.</h1>
+      <p class="onboard-body">Parametric income insurance built exclusively for Zomato & Swiggy delivery partners. When rain stops you, <strong>we pay you</strong> — automatically, instantly, no paperwork.</p>
+      <div class="onboard-pills">
+        <span class="pill"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.5l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Weekly Coverage</span>
+        <span class="pill"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8A5 5 0 113 8a5 5 0 0110 0z" stroke="currentColor" stroke-width="1.5"/><path d="M8 6v4M6 8h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Auto Claims</span>
+        <span class="pill"><svg viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Zero Paperwork</span>
+      </div>
+    </div>
+    <div class="onboard-right">
+      <div class="onboard-card" id="onboard-step-1">
+        <div class="step-header">
+          <div class="step-num">Step 1 of 3</div>
+          <div class="step-progress"><div class="step-bar" style="width:33%"></div></div>
+          <h2>Worker Registration</h2>
+          <p>Set up your GigShield income protection profile</p>
+        </div>
+        <div class="form-grid">
+          <div class="fg"><label>Full Name</label><input type="text" id="reg-name" placeholder="Rajesh Kumar" /></div>
+          <div class="fg"><label>Mobile Number</label><input type="tel" id="reg-phone" placeholder="+91 98765 43210"/></div>
+          <div class="fg"><label>Platform</label>
+            <div class="sel-wrap"><select id="reg-platform"><option value="zomato">🔴 Zomato</option><option value="swiggy">🟠 Swiggy</option><option value="both">Both</option></select><span class="sel-arr">▾</span></div>
+          </div>
+          <div class="fg"><label>City Zone</label>
+            <div class="sel-wrap"><select id="reg-zone"><option value="mumbai-central">Mumbai – Central</option><option value="mumbai-west">Mumbai – Western Suburbs</option><option value="delhi-ncr">Delhi NCR</option><option value="bangalore">Bangalore</option><option value="chennai">Chennai</option><option value="hyderabad">Hyderabad</option><option value="pune">Pune</option></select><span class="sel-arr">▾</span></div>
+          </div>
+          <div class="fg"><label>Avg. Daily Orders</label>
+            <div class="sel-wrap"><select id="reg-orders"><option value="10">Less than 10 orders/day</option><option value="15">10–20 orders/day</option><option value="25">20–30 orders/day</option><option value="35">30+ orders/day (Power Rider)</option></select><span class="sel-arr">▾</span></div>
+          </div>
+          <div class="fg"><label>Vehicle Type</label>
+            <div class="sel-wrap"><select id="reg-vehicle"><option value="bike">🏍️ Motorcycle</option><option value="cycle">🚲 Bicycle</option><option value="scooter">🛵 Scooter</option></select><span class="sel-arr">▾</span></div>
+          </div>
+        </div>
+        <button class="btn-primary full" onclick="goStep(2)">Continue to Risk Profile →</button>
+      </div>
+
+      <div class="onboard-card hidden" id="onboard-step-2">
+        <div class="step-header">
+          <div class="step-num">Step 2 of 3</div>
+          <div class="step-progress"><div class="step-bar" style="width:66%"></div></div>
+          <h2>AI Risk Profiling</h2>
+          <p>Our model calculates your weekly premium based on hyper-local risk factors</p>
+        </div>
+        <div class="risk-computing" id="risk-computing">
+          <div class="compute-spinner"></div>
+          <div class="compute-steps" id="compute-steps">
+            <div class="cs active">📡 Fetching zone weather history...</div>
+            <div class="cs">🌧️ Analysing monsoon disruption patterns...</div>
+            <div class="cs">🚦 Checking traffic & curfew risk index...</div>
+            <div class="cs">📊 Running ML premium model...</div>
+            <div class="cs">✅ Risk profile ready!</div>
+          </div>
+        </div>
+        <div class="risk-result hidden" id="risk-result">
+          <div class="risk-score-ring">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#1e293b" stroke-width="10"/><circle cx="60" cy="60" r="50" fill="none" stroke="url(#rg)" stroke-width="10" stroke-dasharray="314" stroke-dashoffset="94" stroke-linecap="round" transform="rotate(-90 60 60)"/><defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs></svg>
+            <div class="ring-label"><div class="ring-score" id="ring-score">72</div><div class="ring-sub">Risk Score</div></div>
+          </div>
+          <div class="risk-factors">
+            <div class="rf-item"><span class="rf-icon rf-ok">✓</span><span>Zone waterlogging: <strong>Low</strong></span></div>
+            <div class="rf-item"><span class="rf-icon rf-warn">!</span><span>Monsoon season: <strong>Active</strong></span></div>
+            <div class="rf-item"><span class="rf-icon rf-ok">✓</span><span>Strike history: <strong>Minimal</strong></span></div>
+            <div class="rf-item"><span class="rf-icon rf-warn">!</span><span>Heat index: <strong>Moderate</strong></span></div>
+          </div>
+          <div class="premium-box">
+            <div class="pb-label">Your Weekly Premium</div>
+            <div class="pb-amount" id="pb-amount">₹49</div>
+            <div class="pb-sub">covers income loss up to <strong id="pb-cover">₹3,500</strong> / week</div>
+          </div>
+        </div>
+        <button class="btn-primary full hidden" id="step2-next" onclick="goStep(3)">Choose Your Plan →</button>
+      </div>
+
+      <div class="onboard-card hidden" id="onboard-step-3">
+        <div class="step-header">
+          <div class="step-num">Step 3 of 3</div>
+          <div class="step-progress"><div class="step-bar" style="width:100%"></div></div>
+          <h2>Pick Your Shield</h2>
+          <p>Select the weekly coverage plan that fits you</p>
+        </div>
+        <div class="plan-cards">
+          <div class="plan-opt" onclick="selectPlan(this,'basic')" data-plan="basic">
+            <div class="po-badge">Basic</div>
+            <div class="po-price">₹29<span>/wk</span></div>
+            <div class="po-cover">Up to ₹1,500 / week</div>
+            <ul class="po-features"><li>✓ Rain / Flood trigger</li><li>✓ 4 hrs min disruption</li><li>✗ Curfew coverage</li><li>✗ Heat wave coverage</li></ul>
+          </div>
+          <div class="plan-opt selected" onclick="selectPlan(this,'standard')" data-plan="standard">
+            <div class="po-recommended">Recommended</div>
+            <div class="po-badge">Standard</div>
+            <div class="po-price">₹49<span>/wk</span></div>
+            <div class="po-cover">Up to ₹3,500 / week</div>
+            <ul class="po-features"><li>✓ Rain / Flood trigger</li><li>✓ 2 hrs min disruption</li><li>✓ Curfew / Strike coverage</li><li>✗ Heat wave coverage</li></ul>
+          </div>
+          <div class="plan-opt" onclick="selectPlan(this,'premium')" data-plan="premium">
+            <div class="po-badge">Premium</div>
+            <div class="po-price">₹79<span>/wk</span></div>
+            <div class="po-cover">Up to ₹7,000 / week</div>
+            <ul class="po-features"><li>✓ All weather triggers</li><li>✓ 1 hr min disruption</li><li>✓ Curfew / Strike coverage</li><li>✓ Heat wave + AQI coverage</li></ul>
+          </div>
+        </div>
+        <button class="btn-primary full" onclick="activatePolicy()">🛡️ Activate My Shield</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="screen" id="screen-app">
+
+
+  <nav class="topnav">
+    <div class="tn-left">
+      <div class="brand-icon sm">
+        <svg viewBox="0 0 40 40" fill="none"><path d="M20 3L5 10V20C5 28.284 11.716 35 20 37C28.284 35 35 28.284 35 20V10L20 3Z" fill="url(#og2)"/><path d="M13 20.5L17.5 25L27 15" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="og2" x1="5" y1="3" x2="35" y2="37" gradientUnits="userSpaceOnUse"><stop stop-color="#FF6B35"/><stop offset="1" stop-color="#F7C59F"/></linearGradient></defs></svg>
+      </div>
+      <span class="brand-name-sm">GigShield</span>
+    </div>
+    <div class="tn-toggle">
+      <button class="toggle-btn active" id="btn-worker" onclick="switchView('worker')">🛵 Worker View</button>
+      <button class="toggle-btn" id="btn-admin" onclick="switchView('admin')">📊 Admin View</button>
+    </div>
+    <div class="tn-right">
+      <div class="live-badge"><span class="live-dot"></span>Live Monitor</div>
+      <div class="nav-avatar" id="nav-avatar">RK</div>
+    </div>
+  </nav>
+
+  
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+   
+      <div class="snav worker-nav">
+        <div class="snav-section">
+          <div class="snav-label">Overview</div>
+          <a class="snav-item active" onclick="showPage('w-dashboard')" data-page="w-dashboard">
+            <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Dashboard
+          </a>
+          <a class="snav-item" onclick="showPage('w-weather')" data-page="w-weather">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 2v1M10 17v1M2 10H1M19 10h-1M4.22 4.22l-.71-.71M16.49 16.49l-.71-.71M4.22 15.78l-.71.71M16.49 3.51l-.71.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+            Live Disruptions
+          </a>
+        </div>
+        <div class="snav-section">
+          <div class="snav-label">Insurance</div>
+          <a class="snav-item" onclick="showPage('w-policy')" data-page="w-policy">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5.5V10C3 14 6.5 17.5 10 18.5C13.5 17.5 17 14 17 10V5.5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            My Policy
+          </a>
+          <a class="snav-item" onclick="showPage('w-claims')" data-page="w-claims">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M6 2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 7h4M8 10h4M8 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Claims
+          </a>
+          <a class="snav-item" onclick="showPage('w-payout')" data-page="w-payout">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 3v14M6 6h5.5a2.5 2.5 0 010 5H6m0 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Payouts
+          </a>
+        </div>
+      </div>
+      
+      <div class="snav admin-nav hidden">
+        <div class="snav-section">
+          <div class="snav-label">Operations</div>
+          <a class="snav-item active" onclick="showPage('a-dashboard')" data-page="a-dashboard">
+            <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Overview
+          </a>
+          <a class="snav-item" onclick="showPage('a-fraud')" data-page="a-fraud">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M10 2l2.5 5 5.5.8-4 3.9.9 5.5L10 15l-4.9 2.2.9-5.5-4-3.9 5.5-.8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Fraud Detection
+          </a>
+          <a class="snav-item" onclick="showPage('a-claims')" data-page="a-claims">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M6 2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 7h4M8 10h4M8 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Claims Queue
+          </a>
+          <a class="snav-item" onclick="showPage('a-analytics')" data-page="a-analytics">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M3 15l4-5 4 3 3-5 3 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Analytics
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="pages">
+
+      
+      <div class="page active" id="page-w-dashboard">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Good morning, <span id="worker-name-display">Rajesh</span> 👋</h1>
+            <p class="page-sub">Your income shield is <strong class="text-green">Active</strong> · Week 3 of coverage</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn-outline" onclick="triggerDisruption()">⚡ Simulate Disruption</button>
+          </div>
+        </div>
+
+        
+        <div class="alert-banner hidden" id="disruption-alert">
+          <div class="ab-icon">🌧️</div>
+          <div class="ab-content">
+            <div class="ab-title">Heavy Rain Alert – Mumbai Central</div>
+            <div class="ab-body">IMD has declared red alert. Deliveries suspended in your zone. <strong>Auto-claim initiated.</strong></div>
+          </div>
+          <div class="ab-status"><span class="status-pulse"></span>Processing</div>
+        </div>
+
+        
+        <div class="kpi-row">
+          <div class="kpi-card kpi-income">
+            <div class="kpi-icon">💰</div>
+            <div class="kpi-val" id="kpi-protected">₹3,500</div>
+            <div class="kpi-label">Income Protected This Week</div>
+            <div class="kpi-trend up">+₹500 vs last week</div>
+          </div>
+          <div class="kpi-card kpi-plan">
+            <div class="kpi-icon">🛡️</div>
+            <div class="kpi-val" id="kpi-plan-display">Standard</div>
+            <div class="kpi-label">Active Plan</div>
+            <div class="kpi-trend neutral">₹49 / week premium</div>
+          </div>
+          <div class="kpi-card kpi-claims">
+            <div class="kpi-icon">📋</div>
+            <div class="kpi-val" id="kpi-claims-count">2</div>
+            <div class="kpi-label">Claims This Month</div>
+            <div class="kpi-trend up">₹2,100 paid out</div>
+          </div>
+          <div class="kpi-card kpi-risk">
+            <div class="kpi-icon">⛅</div>
+            <div class="kpi-val" id="kpi-risk-today">Medium</div>
+            <div class="kpi-label">Today's Disruption Risk</div>
+            <div class="kpi-trend warn">Rain likely 3–7 PM</div>
+          </div>
+        </div>
+
+     
+        <div class="tw-col">
+         
+          <div class="card">
+            <div class="card-hd">
+              <h3>Live Disruption Monitor</h3>
+              <span class="live-chip"><span class="live-dot sm"></span>Auto-monitoring</span>
+            </div>
+            <div class="disruption-list">
+              <div class="dis-item dis-warn">
+                <div class="dis-icon">🌧️</div>
+                <div class="dis-info"><div class="dis-name">Heavy Rain</div><div class="dis-desc">Mumbai Central · IMD Red Alert · 3–9 PM</div></div>
+                <div class="dis-impact">−₹800</div>
+                <div class="dis-badge warn">Watch</div>
+              </div>
+              <div class="dis-item dis-ok">
+                <div class="dis-icon">💨</div>
+                <div class="dis-info"><div class="dis-name">High Wind Speed</div><div class="dis-desc">42 km/h · Threshold: 50 km/h</div></div>
+                <div class="dis-impact">—</div>
+                <div class="dis-badge ok">Normal</div>
+              </div>
+              <div class="dis-item dis-ok">
+                <div class="dis-icon">🌫️</div>
+                <div class="dis-info"><div class="dis-name">Air Quality (AQI)</div><div class="dis-desc">AQI 118 · Threshold: 300 (Premium plan)</div></div>
+                <div class="dis-impact">—</div>
+                <div class="dis-badge ok">Normal</div>
+              </div>
+              <div class="dis-item dis-ok">
+                <div class="dis-icon">🚫</div>
+                <div class="dis-info"><div class="dis-name">Zone Curfew / Strike</div><div class="dis-desc">No active alerts in your zone</div></div>
+                <div class="dis-impact">—</div>
+                <div class="dis-badge ok">Clear</div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="card">
+            <div class="card-hd"><h3>Weekly Earnings Protection</h3></div>
+            <div class="mini-chart-wrap">
+              <canvas id="earningsChart" height="180"></canvas>
+            </div>
+            <div class="chart-legend">
+              <span><span class="cl-dot" style="background:#FF6B35"></span>Normal Earnings</span>
+              <span><span class="cl-dot" style="background:#22c55e"></span>Covered by GigShield</span>
+            </div>
+          </div>
+        </div>
+
+    
+        <div class="card mt">
+          <div class="card-hd"><h3>Recent Claim Activity</h3><button class="btn-sm" onclick="showPage('w-claims')">View All</button></div>
+          <table class="data-table">
+            <thead><tr><th>Date</th><th>Trigger</th><th>Duration</th><th>Income Lost</th><th>Payout</th><th>Status</th></tr></thead>
+            <tbody id="worker-claims-table">
+              <tr><td>Mar 14</td><td>🌧️ Heavy Rain</td><td>4.5 hrs</td><td>₹1,200</td><td>₹1,050</td><td><span class="badge-paid">Paid</span></td></tr>
+              <tr><td>Mar 8</td><td>🌊 Flooding</td><td>6 hrs</td><td>₹1,600</td><td>₹1,400</td><td><span class="badge-paid">Paid</span></td></tr>
+              <tr><td>Feb 28</td><td>🚫 Zone Curfew</td><td>3 hrs</td><td>₹800</td><td>₹700</td><td><span class="badge-paid">Paid</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+     
+      <div class="page" id="page-w-weather">
+        <div class="page-header"><div><h1 class="page-title">Live Disruption Monitor</h1><p class="page-sub">Real-time triggers from weather, traffic & civic APIs</p></div></div>
+        <div class="tw-col">
+          <div class="card">
+            <div class="card-hd"><h3>Parametric Triggers — Today</h3><span class="live-chip"><span class="live-dot sm"></span>Updated 2 min ago</span></div>
+            <div class="trigger-grid">
+              <div class="trig-card trig-warn" id="trig-rain">
+                <div class="trig-icon">🌧️</div>
+                <div class="trig-name">Rainfall</div>
+                <div class="trig-val" id="tv-rain">38 mm/hr</div>
+                <div class="trig-threshold">Trigger: &gt;25 mm/hr</div>
+                <div class="trig-status warn">⚠ TRIGGERED</div>
+              </div>
+              <div class="trig-card trig-ok" id="trig-flood">
+                <div class="trig-icon">🌊</div>
+                <div class="trig-name">Flood Alert</div>
+                <div class="trig-val">Level 0</div>
+                <div class="trig-threshold">Trigger: IMD Orange+</div>
+                <div class="trig-status ok">✓ Clear</div>
+              </div>
+              <div class="trig-card trig-ok" id="trig-heat">
+                <div class="trig-icon">🌡️</div>
+                <div class="trig-name">Heat Wave</div>
+                <div class="trig-val">34°C</div>
+                <div class="trig-threshold">Trigger: &gt;42°C (Premium)</div>
+                <div class="trig-status ok">✓ Clear</div>
+              </div>
+              <div class="trig-card trig-ok" id="trig-aqi">
+                <div class="trig-icon">🌫️</div>
+                <div class="trig-name">AQI Level</div>
+                <div class="trig-val">118</div>
+                <div class="trig-threshold">Trigger: &gt;300 (Premium)</div>
+                <div class="trig-status ok">✓ Normal</div>
+              </div>
+              <div class="trig-card trig-ok" id="trig-wind">
+                <div class="trig-icon">💨</div>
+                <div class="trig-name">Wind Speed</div>
+                <div class="trig-val">42 km/h</div>
+                <div class="trig-threshold">Trigger: &gt;70 km/h</div>
+                <div class="trig-status ok">✓ Normal</div>
+              </div>
+              <div class="trig-card trig-ok" id="trig-curfew">
+                <div class="trig-icon">🚫</div>
+                <div class="trig-name">Curfew / Strike</div>
+                <div class="trig-val">None</div>
+                <div class="trig-threshold">Municipal / Civic alert</div>
+                <div class="trig-status ok">✓ Clear</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><h3>7-Day Disruption Forecast</h3></div>
+            <canvas id="forecastChart" height="220"></canvas>
+            <div class="chart-legend mt-sm">
+              <span><span class="cl-dot" style="background:#3b82f6"></span>Rain Probability</span>
+              <span><span class="cl-dot" style="background:#f59e0b"></span>Heat Index</span>
+            </div>
+          </div>
+        </div>
+        <div class="card mt">
+          <div class="card-hd"><h3>Auto-Claim Simulation</h3><p class="card-sub-txt">Test how parametric claims trigger and pay out instantly</p></div>
+          <div class="sim-controls">
+            <div class="sim-sel-group">
+              <label>Disruption Type</label>
+              <div class="sel-wrap"><select id="sim-type"><option value="rain">🌧️ Heavy Rain (38mm/hr)</option><option value="flood">🌊 Flash Flood Alert</option><option value="curfew">🚫 Zone Curfew</option><option value="heat">🌡️ Extreme Heat Wave</option></select><span class="sel-arr">▾</span></div>
+            </div>
+            <div class="sim-sel-group">
+              <label>Duration (hours)</label>
+              <div class="sel-wrap"><select id="sim-duration"><option value="2">2 hours</option><option value="3">3 hours</option><option value="4">4 hours</option><option value="6">6 hours</option><option value="8">8 hours</option></select><span class="sel-arr">▾</span></div>
+            </div>
+            <button class="btn-primary" onclick="runSimulation()">▶ Run Auto-Claim</button>
+          </div>
+          <div class="sim-result hidden" id="sim-result">
+            <div class="sim-flow">
+              <div class="sf-step done"><div class="sf-dot">✓</div><div><strong>Trigger Detected</strong><br/><small id="sf-trigger-txt">Rain &gt; 25mm/hr detected via IMD API</small></div></div>
+              <div class="sf-line done"></div>
+              <div class="sf-step done"><div class="sf-dot">✓</div><div><strong>Fraud Check</strong><br/><small>GPS validated · No duplicate · Anomaly score: 0.08</small></div></div>
+              <div class="sf-line done"></div>
+              <div class="sf-step done"><div class="sf-dot">✓</div><div><strong>Claim Approved</strong><br/><small id="sf-amount-txt">Payout: ₹1,050 approved automatically</small></div></div>
+              <div class="sf-line done"></div>
+              <div class="sf-step done"><div class="sf-dot">💸</div><div><strong>Paid via UPI</strong><br/><small>Transferred to linked UPI ID in 4 seconds</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="page" id="page-w-policy">
+        <div class="page-header"><div><h1 class="page-title">My Insurance Policy</h1><p class="page-sub">Policy ID: GS-MUM-2024-00341 · Active since Mar 1, 2025</p></div></div>
+        <div class="tw-col">
+          <div class="card">
+            <div class="card-hd"><h3>Current Plan</h3><span class="badge-active">Active</span></div>
+            <div class="policy-hero">
+              <div class="ph-plan" id="ph-plan-name">Standard Shield</div>
+              <div class="ph-price" id="ph-price">₹49 <span>/ week</span></div>
+              <div class="ph-renews">Auto-renews every Monday · Next: Mar 24, 2025</div>
+            </div>
+            <div class="coverage-list">
+              <div class="cov-item"><span class="cov-check">✓</span><div><div class="cov-name">Rainfall Trigger</div><div class="cov-detail">Activates at &gt;25mm/hr · Pays ₹175/hr lost</div></div></div>
+              <div class="cov-item"><span class="cov-check">✓</span><div><div class="cov-name">Flash Flood</div><div class="cov-detail">IMD Orange+ alert · Pays ₹200/hr lost</div></div></div>
+              <div class="cov-item"><span class="cov-check">✓</span><div><div class="cov-name">Zone Curfew / Strike</div><div class="cov-detail">Verified civic order · Pays ₹175/hr lost</div></div></div>
+              <div class="cov-item cov-disabled"><span class="cov-check dis">✗</span><div><div class="cov-name">Extreme Heat Wave</div><div class="cov-detail">Premium plan only · Upgrade to unlock</div></div></div>
+              <div class="cov-item cov-disabled"><span class="cov-check dis">✗</span><div><div class="cov-name">AQI / Pollution Alert</div><div class="cov-detail">Premium plan only · Upgrade to unlock</div></div></div>
+            </div>
+            <button class="btn-outline full mt" onclick="upgradePlan()">⬆ Upgrade to Premium — ₹79/wk</button>
+          </div>
+          <div class="card">
+            <div class="card-hd"><h3>Payment History</h3></div>
+            <table class="data-table">
+              <thead><tr><th>Week</th><th>Premium</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Mar 17–23</td><td>₹49</td><td><span class="badge-paid">Paid</span></td></tr>
+                <tr><td>Mar 10–16</td><td>₹49</td><td><span class="badge-paid">Paid</span></td></tr>
+                <tr><td>Mar 3–9</td><td>₹49</td><td><span class="badge-paid">Paid</span></td></tr>
+                <tr><td>Feb 24 – Mar 2</td><td>₹49</td><td><span class="badge-paid">Paid</span></td></tr>
+              </tbody>
+            </table>
+            <div class="card mt">
+              <div class="card-hd"><h3>ML Risk Score History</h3></div>
+              <canvas id="riskChart" height="160"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   
+      <div class="page" id="page-w-claims">
+        <div class="page-header"><div><h1 class="page-title">My Claims</h1><p class="page-sub">All parametric claims are triggered automatically — no filing needed</p></div></div>
+        <div class="claims-stats">
+          <div class="cs-card"><div class="cs-val">5</div><div class="cs-lbl">Total Claims</div></div>
+          <div class="cs-card"><div class="cs-val">₹5,200</div><div class="cs-lbl">Total Paid Out</div></div>
+          <div class="cs-card"><div class="cs-val">100%</div><div class="cs-lbl">Auto-Approved</div></div>
+          <div class="cs-card"><div class="cs-val">4.2s</div><div class="cs-lbl">Avg. Payout Time</div></div>
+        </div>
+        <div class="card mt">
+          <div class="card-hd"><h3>Claims History</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Claim ID</th><th>Date</th><th>Trigger Event</th><th>Hours</th><th>Lost Income</th><th>Payout</th><th>Fraud Score</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#GS-C-0041</td><td>Mar 14</td><td>🌧️ Heavy Rain – 38mm/hr</td><td>4.5h</td><td>₹1,200</td><td>₹1,050</td><td><span class="fraud-score low">0.06</span></td><td><span class="badge-paid">Paid</span></td></tr>
+              <tr><td>#GS-C-0038</td><td>Mar 8</td><td>🌊 Flash Flood – Level 2</td><td>6h</td><td>₹1,600</td><td>₹1,400</td><td><span class="fraud-score low">0.09</span></td><td><span class="badge-paid">Paid</span></td></tr>
+              <tr><td>#GS-C-0033</td><td>Feb 28</td><td>🚫 Zone Curfew</td><td>3h</td><td>₹800</td><td>₹700</td><td><span class="fraud-score low">0.04</span></td><td><span class="badge-paid">Paid</span></td></tr>
+              <tr><td>#GS-C-0029</td><td>Feb 20</td><td>🌧️ Heavy Rain – 42mm/hr</td><td>5h</td><td>₹1,350</td><td>₹1,180</td><td><span class="fraud-score low">0.11</span></td><td><span class="badge-paid">Paid</span></td></tr>
+              <tr><td>#GS-C-0021</td><td>Feb 10</td><td>🌧️ Heavy Rain – 29mm/hr</td><td>2h</td><td>₹540</td><td>₹490</td><td><span class="fraud-score med">0.24</span></td><td><span class="badge-paid">Paid</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+ 
+      <div class="page" id="page-w-payout">
+        <div class="page-header"><div><h1 class="page-title">Payouts</h1><p class="page-sub">Income paid directly to your UPI in seconds</p></div></div>
+        <div class="tw-col">
+          <div class="card">
+            <div class="card-hd"><h3>Linked Payment Method</h3></div>
+            <div class="upi-card">
+              <div class="upi-icon">₹</div>
+              <div><div class="upi-id" id="upi-id">rajesh.kumar@upi</div><div class="upi-sub">UPI · Verified ✓</div></div>
+              <span class="badge-active">Primary</span>
+            </div>
+            <div class="payout-summary">
+              <div class="ps-row"><span>This month</span><strong>₹3,150</strong></div>
+              <div class="ps-row"><span>Last month</span><strong>₹2,870</strong></div>
+              <div class="ps-row"><span>All time</span><strong>₹5,200</strong></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><h3>Instant Payout Flow</h3></div>
+            <div class="payout-flow">
+              <div class="pf-step"><div class="pf-num">1</div><div class="pf-txt"><strong>Trigger Fires</strong><br/>Weather/Civic API confirms disruption</div></div>
+              <div class="pf-arrow">→</div>
+              <div class="pf-step"><div class="pf-num">2</div><div class="pf-txt"><strong>AI Validates</strong><br/>Fraud check + GPS verify in &lt;1s</div></div>
+              <div class="pf-arrow">→</div>
+              <div class="pf-step"><div class="pf-num">3</div><div class="pf-txt"><strong>Auto-Approved</strong><br/>No paperwork, no waiting</div></div>
+              <div class="pf-arrow">→</div>
+              <div class="pf-step"><div class="pf-num">4</div><div class="pf-txt"><strong>UPI Credit</strong><br/>Money in your account in ~4 seconds</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt">
+          <div class="card-hd"><h3>Payout History</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Date</th><th>Claim</th><th>Amount</th><th>Method</th><th>Time to Pay</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Mar 14, 7:32 PM</td><td>#GS-C-0041</td><td>₹1,050</td><td>UPI</td><td>3.8s</td><td><span class="badge-paid">Credited</span></td></tr>
+              <tr><td>Mar 8, 2:15 PM</td><td>#GS-C-0038</td><td>₹1,400</td><td>UPI</td><td>4.1s</td><td><span class="badge-paid">Credited</span></td></tr>
+              <tr><td>Feb 28, 11:00 AM</td><td>#GS-C-0033</td><td>₹700</td><td>UPI</td><td>4.5s</td><td><span class="badge-paid">Credited</span></td></tr>
+              <tr><td>Feb 20, 6:45 PM</td><td>#GS-C-0029</td><td>₹1,180</td><td>UPI</td><td>3.9s</td><td><span class="badge-paid">Credited</span></td></tr>
+              <tr><td>Feb 10, 5:20 PM</td><td>#GS-C-0021</td><td>₹490</td><td>UPI</td><td>5.2s</td><td><span class="badge-paid">Credited</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="page" id="page-a-dashboard">
+        <div class="page-header"><div><h1 class="page-title">Insurer Overview</h1><p class="page-sub">Platform-wide metrics · Food Delivery segment · Mumbai region</p></div><div class="page-actions"><button class="btn-outline" onclick="showPage('a-analytics')">📊 Full Analytics</button></div></div>
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-icon">👥</div><div class="kpi-val">4,821</div><div class="kpi-label">Active Workers</div><div class="kpi-trend up">+142 this week</div></div>
+          <div class="kpi-card"><div class="kpi-icon">💼</div><div class="kpi-val">4,603</div><div class="kpi-label">Active Policies</div><div class="kpi-trend up">95.5% coverage rate</div></div>
+          <div class="kpi-card"><div class="kpi-icon">⚡</div><div class="kpi-val">₹2.38L</div><div class="kpi-label">Premiums This Week</div><div class="kpi-trend up">+8% vs last week</div></div>
+          <div class="kpi-card"><div class="kpi-icon">💸</div><div class="kpi-val">₹1.64L</div><div class="kpi-label">Claims Paid This Week</div><div class="kpi-trend neutral">Loss Ratio: 68.9%</div></div>
+          <div class="kpi-card"><div class="kpi-icon">🚨</div><div class="kpi-val">7</div><div class="kpi-label">Fraud Flags (Active)</div><div class="kpi-trend warn">3 high-risk</div></div>
+          <div class="kpi-card"><div class="kpi-icon">⏱️</div><div class="kpi-val">4.3s</div><div class="kpi-label">Avg. Payout Time</div><div class="kpi-trend up">Best in class</div></div>
+        </div>
+        <div class="tw-col">
+          <div class="card">
+            <div class="card-hd"><h3>Weekly Premium vs Claims</h3></div>
+            <canvas id="adminRevenueChart" height="200"></canvas>
+          </div>
+          <div class="card">
+            <div class="card-hd"><h3>Disruption Type Breakdown</h3></div>
+            <canvas id="disruptionPieChart" height="200"></canvas>
+          </div>
+        </div>
+        <div class="card mt">
+          <div class="card-hd"><h3>Predictive Risk — Next 7 Days</h3><span class="live-chip"><span class="live-dot sm"></span>ML Model</span></div>
+          <canvas id="predictiveChart" height="160"></canvas>
+          <div class="predict-insight">
+            <div class="pi-box warn">⚠️ <strong>High Rain Risk Wed–Thu:</strong> Estimated 380+ claims · Expected payout ₹3.8L · Recommend increasing reserve.</div>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="page" id="page-a-fraud">
+        <div class="page-header"><div><h1 class="page-title">Fraud Detection Engine</h1><p class="page-sub">ML anomaly detection · GPS validation · Duplicate prevention</p></div></div>
+        <div class="fraud-stats">
+          <div class="fs-card fs-green"><div class="fs-val">98.7%</div><div class="fs-lbl">Claims Clean</div></div>
+          <div class="fs-card fs-yellow"><div class="fs-val">1.1%</div><div class="fs-lbl">Under Review</div></div>
+          <div class="fs-card fs-red"><div class="fs-val">0.2%</div><div class="fs-lbl">Rejected (Fraud)</div></div>
+          <div class="fs-card fs-blue"><div class="fs-val">₹42K</div><div class="fs-lbl">Fraud Prevented</div></div>
+        </div>
+        <div class="tw-col mt">
+          <div class="card">
+            <div class="card-hd"><h3>Fraud Signal Checklist</h3></div>
+            <div class="fraud-checks">
+              <div class="fc-item"><div class="fc-icon ok">✓</div><div><div class="fc-name">GPS Location Match</div><div class="fc-desc">Worker GPS matches disruption zone centroid ±2km</div></div><div class="fc-method">Real-time API</div></div>
+              <div class="fc-item"><div class="fc-icon ok">✓</div><div><div class="fc-name">No Duplicate Claims</div><div class="fc-desc">Same worker, same window — deduplicated by event ID</div></div><div class="fc-method">DB Hash Check</div></div>
+              <div class="fc-item"><div class="fc-icon ok">✓</div><div><div class="fc-name">Order Activity Drop</div><div class="fc-desc">Platform order data confirms 0 deliveries during disruption</div></div><div class="fc-method">Platform API</div></div>
+              <div class="fc-item"><div class="fc-icon warn">!</div><div><div class="fc-name">GPS Spoofing Detection</div><div class="fc-desc">Velocity analysis flags impossible movement patterns</div></div><div class="fc-method">ML Model</div></div>
+              <div class="fc-item"><div class="fc-icon ok">✓</div><div><div class="fc-name">Weather Corroboration</div><div class="fc-desc">Claim timestamp aligns with IMD/radar data for exact zone</div></div><div class="fc-method">IMD API</div></div>
+              <div class="fc-item"><div class="fc-icon ok">✓</div><div><div class="fc-name">Historical Anomaly Score</div><div class="fc-desc">ML model scores claim 0–1 based on 90-day worker history</div></div><div class="fc-method">ML Model</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><h3>Flagged Claims Queue</h3></div>
+            <table class="data-table">
+              <thead><tr><th>Claim</th><th>Worker</th><th>Fraud Score</th><th>Flag Reason</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>#GS-C-0044</td><td>Arjun S.</td><td><span class="fraud-score high">0.81</span></td><td>GPS spoofing detected</td><td><button class="btn-sm red" onclick="rejectClaim(this)">Reject</button></td></tr>
+                <tr><td>#GS-C-0042</td><td>Vikram P.</td><td><span class="fraud-score med">0.52</span></td><td>Claimed during active delivery</td><td><button class="btn-sm yellow" onclick="reviewClaim(this)">Review</button></td></tr>
+                <tr><td>#GS-C-0040</td><td>Suresh M.</td><td><span class="fraud-score med">0.45</span></td><td>Outside zone boundary</td><td><button class="btn-sm yellow" onclick="reviewClaim(this)">Review</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card mt">
+          <div class="card-hd"><h3>Anomaly Score Distribution (Last 30 Days)</h3></div>
+          <canvas id="fraudChart" height="160"></canvas>
+        </div>
+      </div>
+
+     
+      <div class="page" id="page-a-claims">
+        <div class="page-header"><div><h1 class="page-title">Claims Management Queue</h1><p class="page-sub">All auto-triggered claims · Mumbai Food Delivery segment</p></div></div>
+        <div class="filter-bar">
+          <div class="sel-wrap sm"><select id="claims-filter"><option>All Claims</option><option>Pending</option><option>Approved</option><option>Under Review</option><option>Rejected</option></select><span class="sel-arr">▾</span></div>
+          <div class="sel-wrap sm"><select><option>All Triggers</option><option>Rain</option><option>Flood</option><option>Curfew</option><option>Heat</option></select><span class="sel-arr">▾</span></div>
+          <div class="sel-wrap sm"><select><option>This Week</option><option>This Month</option><option>Last 3 Months</option></select><span class="sel-arr">▾</span></div>
+        </div>
+        <div class="card mt">
+          <table class="data-table">
+            <thead><tr><th>Claim ID</th><th>Worker</th><th>Zone</th><th>Trigger</th><th>Hours</th><th>Payout</th><th>Fraud Score</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="admin-claims-body">
+              <tr><td>#GS-C-0045</td><td>Rahul D.</td><td>Andheri W</td><td>🌧️ Rain 38mm</td><td>3h</td><td>₹525</td><td><span class="fraud-score low">0.07</span></td><td><span class="badge-auto">Auto-Approved</span></td><td>—</td></tr>
+              <tr><td>#GS-C-0044</td><td>Arjun S.</td><td>Bandra</td><td>🌧️ Rain 31mm</td><td>4h</td><td>₹700</td><td><span class="fraud-score high">0.81</span></td><td><span class="badge-flag">Flagged</span></td><td><button class="btn-sm red" onclick="rejectClaim(this)">Reject</button></td></tr>
+              <tr><td>#GS-C-0043</td><td>Priya K.</td><td>Powai</td><td>🌊 Flood L2</td><td>6h</td><td>₹1,200</td><td><span class="fraud-score low">0.05</span></td><td><span class="badge-auto">Auto-Approved</span></td><td>—</td></tr>
+              <tr><td>#GS-C-0042</td><td>Vikram P.</td><td>Kurla</td><td>🌧️ Rain 28mm</td><td>2h</td><td>₹350</td><td><span class="fraud-score med">0.52</span></td><td><span class="badge-review">Under Review</span></td><td><button class="btn-sm yellow" onclick="reviewClaim(this)">Approve</button></td></tr>
+              <tr><td>#GS-C-0041</td><td>Rajesh K.</td><td>Dadar</td><td>🌧️ Rain 38mm</td><td>4.5h</td><td>₹1,050</td><td><span class="fraud-score low">0.06</span></td><td><span class="badge-paid">Paid</span></td><td>—</td></tr>
+              <tr><td>#GS-C-0040</td><td>Suresh M.</td><td>Goregaon</td><td>🚫 Curfew</td><td>3h</td><td>₹525</td><td><span class="fraud-score med">0.45</span></td><td><span class="badge-review">Under Review</span></td><td><button class="btn-sm yellow" onclick="reviewClaim(this)">Approve</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+     
+      <div class="page" id="page-a-analytics">
+        <div class="page-header"><div><h1 class="page-title">Analytics & Insights</h1><p class="page-sub">Loss ratios · Predictive modelling · Zone performance</p></div></div>
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-icon">📈</div><div class="kpi-val">68.9%</div><div class="kpi-label">Loss Ratio (This Month)</div><div class="kpi-trend up">Target: &lt;75%</div></div>
+          <div class="kpi-card"><div class="kpi-icon">🔄</div><div class="kpi-val">92.4%</div><div class="kpi-label">Policy Renewal Rate</div><div class="kpi-trend up">+3.1% vs last month</div></div>
+          <div class="kpi-card"><div class="kpi-icon">⚡</div><div class="kpi-val">100%</div><div class="kpi-label">Parametric Auto-Trigger Rate</div><div class="kpi-trend up">Zero manual claims</div></div>
+          <div class="kpi-card"><div class="kpi-icon">🛡️</div><div class="kpi-val">₹23.8L</div><div class="kpi-label">Total Premiums Collected</div><div class="kpi-trend up">+18% MoM</div></div>
+        </div>
+        <div class="tw-col">
+          <div class="card"><div class="card-hd"><h3>Monthly Premium vs Payout Trend</h3></div><canvas id="trendChart" height="200"></canvas></div>
+          <div class="card"><div class="card-hd"><h3>Plan Distribution</h3></div><canvas id="planPieChart" height="200"></canvas></div>
+        </div>
+        <div class="card mt">
+          <div class="card-hd"><h3>Zone-wise Performance</h3></div>
+          <table class="data-table">
+            <thead><tr><th>Zone</th><th>Workers</th><th>Avg Weekly Premium</th><th>Claims (Month)</th><th>Loss Ratio</th><th>Risk Level</th></tr></thead>
+            <tbody>
+              <tr><td>Mumbai Central</td><td>1,204</td><td>₹53</td><td>312</td><td>71%</td><td><span class="risk-chip med">Medium</span></td></tr>
+              <tr><td>Mumbai West</td><td>987</td><td>₹49</td><td>198</td><td>58%</td><td><span class="risk-chip low">Low</span></td></tr>
+              <tr><td>Mumbai Harbour</td><td>743</td><td>₹68</td><td>287</td><td>82%</td><td><span class="risk-chip high">High</span></td></tr>
+              <tr><td>Thane</td><td>622</td><td>₹44</td><td>143</td><td>54%</td><td><span class="risk-chip low">Low</span></td></tr>
+              <tr><td>Navi Mumbai</td><td>511</td><td>₹51</td><td>175</td><td>65%</td><td><span class="risk-chip med">Medium</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+
+<div class="toast" id="toast"><div id="toast-msg"></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>
