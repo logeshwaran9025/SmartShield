@@ -42,8 +42,8 @@
           <p>Set up your GigShield income protection profile</p>
         </div>
         <div class="form-grid">
-          <div class="fg"><label>Full Name</label><input type="text" id="reg-name" placeholder="Your Name" /></div>
-          <div class="fg"><label>Mobile Number</label><input type="tel" id="reg-phone" placeholder="+91 12345 67890"/></div>
+          <div class="fg"><label>Full Name</label><input type="text" id="reg-name" placeholder="Rajesh Kumar" /></div>
+          <div class="fg"><label>Mobile Number</label><input type="tel" id="reg-phone" placeholder="+91 98765 43210"/></div>
           <div class="fg"><label>Platform</label>
             <div class="sel-wrap"><select id="reg-platform"><option value="zomato">🔴 Zomato</option><option value="swiggy">🟠 Swiggy</option><option value="both">Both</option></select><span class="sel-arr">▾</span></div>
           </div>
@@ -134,7 +134,7 @@
 
 <div class="screen" id="screen-app">
 
-
+  
   <nav class="topnav">
     <div class="tn-left">
       <div class="brand-icon sm">
@@ -155,7 +155,7 @@
   
   <div class="app-layout">
     <aside class="sidebar" id="sidebar">
-   
+     
       <div class="snav worker-nav">
         <div class="snav-section">
           <div class="snav-label">Overview</div>
@@ -208,6 +208,7 @@
       </div>
     </aside>
 
+    
     <main class="pages">
 
       
@@ -222,7 +223,7 @@
           </div>
         </div>
 
-        
+       
         <div class="alert-banner hidden" id="disruption-alert">
           <div class="ab-icon">🌧️</div>
           <div class="ab-content">
@@ -260,9 +261,9 @@
           </div>
         </div>
 
-     
+        
         <div class="tw-col">
-         
+          
           <div class="card">
             <div class="card-hd">
               <h3>Live Disruption Monitor</h3>
@@ -299,8 +300,8 @@
           
           <div class="card">
             <div class="card-hd"><h3>Weekly Earnings Protection</h3></div>
-            <div class="mini-chart-wrap">
-              <canvas id="earningsChart" height="180"></canvas>
+            <div class="chart-box">
+              <canvas id="earningsChart"></canvas>
             </div>
             <div class="chart-legend">
               <span><span class="cl-dot" style="background:#FF6B35"></span>Normal Earnings</span>
@@ -309,7 +310,7 @@
           </div>
         </div>
 
-    
+       
         <div class="card mt">
           <div class="card-hd"><h3>Recent Claim Activity</h3><button class="btn-sm" onclick="showPage('w-claims')">View All</button></div>
           <table class="data-table">
@@ -376,7 +377,9 @@
           </div>
           <div class="card">
             <div class="card-hd"><h3>7-Day Disruption Forecast</h3></div>
-            <canvas id="forecastChart" height="220"></canvas>
+            <div class="chart-box">
+              <canvas id="forecastChart"></canvas>
+            </div>
             <div class="chart-legend mt-sm">
               <span><span class="cl-dot" style="background:#3b82f6"></span>Rain Probability</span>
               <span><span class="cl-dot" style="background:#f59e0b"></span>Heat Index</span>
@@ -410,7 +413,7 @@
         </div>
       </div>
 
-    
+      
       <div class="page" id="page-w-policy">
         <div class="page-header"><div><h1 class="page-title">My Insurance Policy</h1><p class="page-sub">Policy ID: GS-MUM-2024-00341 · Active since Mar 1, 2025</p></div></div>
         <div class="tw-col">
@@ -443,13 +446,15 @@
             </table>
             <div class="card mt">
               <div class="card-hd"><h3>ML Risk Score History</h3></div>
-              <canvas id="riskChart" height="160"></canvas>
+              <div class="chart-box">
+                <canvas id="riskChart"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-   
+      
       <div class="page" id="page-w-claims">
         <div class="page-header"><div><h1 class="page-title">My Claims</h1><p class="page-sub">All parametric claims are triggered automatically — no filing needed</p></div></div>
         <div class="claims-stats">
@@ -473,7 +478,7 @@
         </div>
       </div>
 
- 
+      
       <div class="page" id="page-w-payout">
         <div class="page-header"><div><h1 class="page-title">Payouts</h1><p class="page-sub">Income paid directly to your UPI in seconds</p></div></div>
         <div class="tw-col">
@@ -532,23 +537,29 @@
         <div class="tw-col">
           <div class="card">
             <div class="card-hd"><h3>Weekly Premium vs Claims</h3></div>
-            <canvas id="adminRevenueChart" height="200"></canvas>
+            <div class="chart-box">
+              <canvas id="adminRevenueChart"></canvas>
+            </div>
           </div>
           <div class="card">
             <div class="card-hd"><h3>Disruption Type Breakdown</h3></div>
-            <canvas id="disruptionPieChart" height="200"></canvas>
+            <div class="chart-box">
+              <canvas id="disruptionPieChart"></canvas>
+            </div>
           </div>
         </div>
         <div class="card mt">
           <div class="card-hd"><h3>Predictive Risk — Next 7 Days</h3><span class="live-chip"><span class="live-dot sm"></span>ML Model</span></div>
-          <canvas id="predictiveChart" height="160"></canvas>
+          <div class="chart-box">
+            <canvas id="predictiveChart"></canvas>
+          </div>
           <div class="predict-insight">
             <div class="pi-box warn">⚠️ <strong>High Rain Risk Wed–Thu:</strong> Estimated 380+ claims · Expected payout ₹3.8L · Recommend increasing reserve.</div>
           </div>
         </div>
       </div>
 
-    
+      
       <div class="page" id="page-a-fraud">
         <div class="page-header"><div><h1 class="page-title">Fraud Detection Engine</h1><p class="page-sub">ML anomaly detection · GPS validation · Duplicate prevention</p></div></div>
         <div class="fraud-stats">
@@ -583,11 +594,13 @@
         </div>
         <div class="card mt">
           <div class="card-hd"><h3>Anomaly Score Distribution (Last 30 Days)</h3></div>
-          <canvas id="fraudChart" height="160"></canvas>
+          <div class="chart-box">
+            <canvas id="fraudChart"></canvas>
+          </div>
         </div>
       </div>
 
-     
+      
       <div class="page" id="page-a-claims">
         <div class="page-header"><div><h1 class="page-title">Claims Management Queue</h1><p class="page-sub">All auto-triggered claims · Mumbai Food Delivery segment</p></div></div>
         <div class="filter-bar">
@@ -610,7 +623,7 @@
         </div>
       </div>
 
-     
+      
       <div class="page" id="page-a-analytics">
         <div class="page-header"><div><h1 class="page-title">Analytics & Insights</h1><p class="page-sub">Loss ratios · Predictive modelling · Zone performance</p></div></div>
         <div class="kpi-row">
@@ -620,8 +633,8 @@
           <div class="kpi-card"><div class="kpi-icon">🛡️</div><div class="kpi-val">₹23.8L</div><div class="kpi-label">Total Premiums Collected</div><div class="kpi-trend up">+18% MoM</div></div>
         </div>
         <div class="tw-col">
-          <div class="card"><div class="card-hd"><h3>Monthly Premium vs Payout Trend</h3></div><canvas id="trendChart" height="200"></canvas></div>
-          <div class="card"><div class="card-hd"><h3>Plan Distribution</h3></div><canvas id="planPieChart" height="200"></canvas></div>
+          <div class="card"><div class="card-hd"><h3>Monthly Premium vs Payout Trend</h3></div><div class="chart-box"><canvas id="trendChart"></canvas></div></div>
+          <div class="card"><div class="card-hd"><h3>Plan Distribution</h3></div><div class="chart-box"><canvas id="planPieChart"></canvas></div></div>
         </div>
         <div class="card mt">
           <div class="card-hd"><h3>Zone-wise Performance</h3></div>
